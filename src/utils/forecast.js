@@ -10,11 +10,16 @@ const forecast = (latitude, longitude, callback) => {
         } else if (body.error) {
             callback('No data available', undefined)
         } else {
+
+            console.log(body.current)
+
             const summary = body.current.weather_descriptions[0]
             const temperature = body.current.temperature
             const feelslike = body.current.feelslike
+            const precip = body.current.precip
+            const humidity = body.current.humidity
 
-            const data = summary + '. It is currently ' + temperature + ' degrees out. And it feels like ' + feelslike + ' degrees.'
+            const data = summary + '. It is currently ' + temperature + ' degrees out. And it feels like ' + feelslike + ' degrees. With a precipitation chance of ' + precip + '%, and humidity of ' + humidity + '%.'
             
             callback(undefined, data)
         }
